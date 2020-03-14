@@ -71,8 +71,8 @@ async function updatePendingProblemRequest() {
     await storageRef.child('/problems/'+problemFilePreview.innerHTML).getDownloadURL().then(function(url) {
     		problemFileURL = url.toString()
     })
-	
-
+    var dueMonth = document.getElementById("problem-due-month").value
+    var dueDay = document.getElementById("problem-due-day").value
     var problemNotes = document.getElementById("problem-notes").value
     var infoDict = {
     	  "type" : "problem",
@@ -82,6 +82,7 @@ async function updatePendingProblemRequest() {
           "problemURL" : problemFileURL,
           "notes" : problemNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
+	  "dueDate" : dueMonth +" "+ dueDay +"th",
           "requesterId" : plugoatID,
 	  "username" : username,
           "notifications" : "false"
@@ -101,6 +102,8 @@ async function updatePendingAssignmentRequest() {
     await storageRef.child('/assignments/'+assignmentFilePreview.innerHTML).getDownloadURL().then(function(url) {
     		assignmentFileURL = url.toString()
     })
+    var dueMonth = document.getElementById("assignment-due-month").value
+    var dueDay = document.getElementById("assignment-due-day").value
     var assignmentNotes = document.getElementById("assignment-notes").value
 		var infoDict = {
     			"type" : "assignment",
@@ -110,6 +113,7 @@ async function updatePendingAssignmentRequest() {
           "assignmentURL" : assignmentFileURL,
           "notes" : assignmentNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
+	  "dueDate" : dueMonth +" "+ dueDay +"th",
           "requesterId" : plugoatID,
 	  "username" : username,
           "notifications" : "false"
