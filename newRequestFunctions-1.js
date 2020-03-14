@@ -49,7 +49,12 @@ async function handleAssignmentUploadSubmit(e) {
   const uploadTask = await storageRef.child(`assignments/${selectedAssignmentFile.name}`).put(selectedAssignmentFile);
   updatePendingAssignmentRequest();
 }
-
+//GET USERNAME
+	
+var username;
+dataRef.once("value", function(snapshot) {
+	username = snapshot.child("/users/"+plugoatID).val()
+}
 //UPDATE FIREBASE WITH PENDING PROBLEM
 async function updatePendingProblemRequest() {
 
@@ -69,7 +74,8 @@ async function updatePendingProblemRequest() {
           "problemURL" : problemFileURL,
           "notes" : problemNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
-          "requester" : plugoatID,
+          "requesterId" : plugoatID,
+	  "username" : username,
           "notifications" : "false"
           }
           
@@ -97,7 +103,8 @@ async function updatePendingAssignmentRequest() {
           "assignmentURL" : assignmentFileURL,
           "notes" : assignmentNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
-          "requester" : plugoatID,
+          "requesterId" : plugoatID,
+	  "username" : username,
           "notifications" : "false"
           }
           
@@ -130,7 +137,8 @@ function updatePendingExamRequest() {
           "examEndTime" : examEndHour + ":" + examEndMinute,
           "notes" : examNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
-          "requester" : plugoatID,
+          "requesterId" : plugoatID,
+	  "username" : username,
           "notifications" : "false"
           }
           
