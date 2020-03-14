@@ -49,7 +49,13 @@ async function handleAssignmentUploadSubmit(e) {
   const uploadTask = await storageRef.child(`assignments/${selectedAssignmentFile.name}`).put(selectedAssignmentFile);
   updatePendingAssignmentRequest();
 }
-var username = dataRef.child("users/"+plugoatID+"/username/")
+var username = getUsername()
+
+async function getUsername(plugoatID) {
+	await dataRef.once("value", function(snapshot) {
+		return(snapshot.child("users/"+plugoatID+"/username/")
+	})
+}
 console.log(username)
 
 //UPDATE FIREBASE WITH PENDING PROBLEM
