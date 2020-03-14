@@ -51,8 +51,8 @@ async function handleAssignmentUploadSubmit(e) {
 }
 //GET USERNAME
 	
-var username = dataRef.once("value", function(snapshot) {
-	username = snapshot.child("/users/"+plugoatID+"/username/").val()
+var username = asnyc dataRef.once("value", function(snapshot) {
+	username = await snapshot.child("/users/"+plugoatID+"/username/").val()
 	console.log(username)
 	return(username)
 	})
