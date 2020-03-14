@@ -51,11 +51,11 @@ async function handleAssignmentUploadSubmit(e) {
 }
 //GET USERNAME
 	
-var username;
-dataRef.once("value", function(snapshot) {
+var username = dataRef.once("value", function(snapshot) {
 	username = snapshot.child("/users/"+plugoatID+"/username/").val()
 	console.log(username)
-})
+	return(username)
+	})
 console.log(username)
 //UPDATE FIREBASE WITH PENDING PROBLEM
 async function updatePendingProblemRequest() {
