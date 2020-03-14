@@ -83,7 +83,7 @@ async function updatePendingProblemRequest() {
           "problemURL" : problemFileURL,
           "notes" : problemNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
-	  "dueDate" : problemDueMonth +" " problemDueDay +"th",
+	  "dueDate" : problemDueMonth +" "+ problemDueDay +"th",
           "requesterId" : plugoatID,
 	  "username" : username,
           "notifications" : "false"
