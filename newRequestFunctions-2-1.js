@@ -49,12 +49,15 @@ async function handleAssignmentUploadSubmit(e) {
   const uploadTask = await storageRef.child(`assignments/${selectedAssignmentFile.name}`).put(selectedAssignmentFile);
   updatePendingAssignmentRequest();
 }
-var username = getUsername()
 
-async function getUsername(plugoatID) {
-	await dataRef.once("value", function(snapshot) {
-		return(snapshot.child("users/"+plugoatID+"/username/")
-	})
+
+dataRef.once("value", function(snapshot) {
+   username = snapshot.child("users/"+plugoatID+"/username/").val()
+   storeUsersName(username)
+})
+var username = ""
+function storeUsersName(nameToStore) {
+	username = nameToStore
 }
 console.log(username)
 
