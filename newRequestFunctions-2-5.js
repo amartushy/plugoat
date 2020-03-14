@@ -86,7 +86,8 @@ async function updatePendingProblemRequest() {
 	  "dueDate" : problemDueMonth +" "+ problemDueDay +"th",
           "requesterId" : plugoatID,
 	  "username" : username,
-          "notifications" : "false"
+          "notifications" : "false",
+	  "confirmed" : 0
           }
     updateDict = {}
     updateDict[createRequestId()] = infoDict
@@ -117,7 +118,8 @@ async function updatePendingAssignmentRequest() {
 	  "dueDate" : dueMonth +" "+ dueDay +"th",
           "requesterId" : plugoatID,
 	  "username" : username,
-          "notifications" : "false"
+          "notifications" : "false",
+	  "confirmed" : 0
           }
           
     var updateDict = {}
@@ -151,7 +153,8 @@ function updatePendingExamRequest() {
           "requestTime" : Math.round((new Date()).getTime() / 1000),
           "requesterId" : plugoatID,
 	  "username" : username,
-          "notifications" : "false"
+          "notifications" : "false",
+	  "confirmed" : 0
           }
           
     var updateDict = {}
