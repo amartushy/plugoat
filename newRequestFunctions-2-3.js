@@ -71,9 +71,10 @@ async function updatePendingProblemRequest() {
     await storageRef.child('/problems/'+problemFilePreview.innerHTML).getDownloadURL().then(function(url) {
     		problemFileURL = url.toString()
     })
-    var dueMonth = document.getElementById("problem-due-month").value
-    var dueDay = document.getElementById("problem-due-day").value
+    var problemDueMonth = document.getElementById("problem-due-month").value
+    var problemDueDay = document.getElementById("problem-due-day").value
     var problemNotes = document.getElementById("problem-notes").value
+
     var infoDict = {
     	  "type" : "problem",
     	  "subject" : subject,
@@ -82,7 +83,7 @@ async function updatePendingProblemRequest() {
           "problemURL" : problemFileURL,
           "notes" : problemNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
-	  "dueDate" : dueMonth +" "+ dueDay +"th",
+	  "dueDate" : problemDueMonth +" " problemDueDay +"th",
           "requesterId" : plugoatID,
 	  "username" : username,
           "notifications" : "false"
