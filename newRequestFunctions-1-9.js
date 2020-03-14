@@ -49,7 +49,8 @@ async function handleAssignmentUploadSubmit(e) {
   const uploadTask = await storageRef.child(`assignments/${selectedAssignmentFile.name}`).put(selectedAssignmentFile);
   updatePendingAssignmentRequest();
 }
-
+var username = dataRef.child("users/"+plugoatID+"/username/")
+console.log(username)
 
 //UPDATE FIREBASE WITH PENDING PROBLEM
 async function updatePendingProblemRequest() {
@@ -62,24 +63,22 @@ async function updatePendingProblemRequest() {
     		problemFileURL = url.toString()
     })
 	
-    updateDict = {}
-    dataRef.once("value", function(snapshot) {
-	    var problemNotes = document.getElementById("problem-notes").value
-		var infoDict = {
-    			"type" : "problem",
-    			"subject" : subject,
+
+    var problemNotes = document.getElementById("problem-notes").value
+    var infoDict = {
+    	  "type" : "problem",
+    	  "subject" : subject,
           "course" : course,
           "bidPrice" : problemBidPrice,
           "problemURL" : problemFileURL,
           "notes" : problemNotes,
           "requestTime" : Math.round((new Date()).getTime() / 1000),
           "requesterId" : plugoatID,
-	  "username" : snapshot.child("users"+plugoatID+"/username/").val(),
+	  "username" : username,
           "notifications" : "false"
           }
-	  updateDict[createRequestId()] = infoDict
-	    
-    })
+    updateDict = {}
+    updateDict[createRequestId()] = infoDict
     dataRef.child("/pendingRequests/").update(updateDict)   
 
 }
