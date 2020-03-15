@@ -127,33 +127,10 @@ async function updatePendingAssignmentRequest() {
     dataRef.child("/pendingRequests/").update(updateDict)		
 }
 	
-//UPDATE FIREBASE WITH PENDING EXAM AND PAY
-var continueToPaymentExam = document.getElementById("exam-payment")
-continueToPaymentExam.addEventListener('click', continuetoExamPayment)
-	
-function continuetoExamPayment() {
-	//check if values are okay
-	document.getElementById("dropin-container-exam").style.display = "flex"
-	document.getElementById("request-options").style.display = "none"
-	
-	var submitExamRequestButton = document.getElementById("submit-exam-request")
-	//submitExamRequestButton.addEventListener('click', updatePendingExamRequest);
+//UPDATE FIREBASE WITH PENDING EXAM
+var submitExamRequestButton = document.getElementById("submit-exam-request")
+submitExamRequestButton.addEventListener('click', updatePendingExamRequest);
 
-	braintree.dropin.create({
-      		authorization: 'production_yks4fjkg_j3thkst7k9j6mkvc',
-      		container: '#dropin-container-exam'
-    	}, function (createErr, instance) {
-      		submitExamRequestButton.addEventListener('click', function () {
-        	instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-          	// Submit payload.nonce to your server
-          	var nonce = payload.nonce
-          	var transactionAmount = document.getElementById("price").value
-          	examCheckoutWithNonceAndAmount(nonce, transactionAmount)
-        });
-      });
-    });
-	
-}
 function updatePendingExamRequest() {
 		var subject = document.getElementById("subject-field").value
     var course = document.getElementById("course-field").value
