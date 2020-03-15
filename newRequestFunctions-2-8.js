@@ -150,7 +150,7 @@ braintree.dropin.create({
 	
 function continuetoExamPayment() {
 	//check if values are okay
-	document.getElementById("dropin-container").style.display = "flex"
+	document.getElementById("dropin-container-exam").style.display = "flex"
 	document.getElementById("request-options").style.display = "none"
 	
 }
